@@ -1,510 +1,764 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Iftikhar Hussain Shah · Portfolio</title>
-    <!-- Font Awesome 6 for sharp icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts: modern tech & clean look -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Iftikhar Hussain Shah | Senior Laravel Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{
+  background:#050a0e;
+  color:#e8f4f0;
+  font-family:'DM Mono',monospace;
+  overflow-x:hidden;
+  line-height:1.6;
+}
+a{text-decoration:none;color:inherit;}
+img{display:block;max-width:100%;}
 
-        body {
-            background: linear-gradient(135deg, #0c0f1c 0%, #1a1e2f 100%);
-            font-family: 'Inter', sans-serif;
-            color: #e8edf2;
-            line-height: 1.5;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem 1.5rem;
-            position: relative;
-            overflow-x: hidden;
-        }
+/* ═══════════════════════════════════════════
+   SCROLLBAR
+═══════════════════════════════════════════ */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:#050a0e;}
+::-webkit-scrollbar-thumb{background:#00e5a0;border-radius:2px;}
 
-        /* animated mesh background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            overflow: hidden;
-        }
+/* ═══════════════════════════════════════════
+   CSS VARIABLES
+═══════════════════════════════════════════ */
+:root{
+  --green:#00e5a0;
+  --blue:#00b8d9;
+  --dark:#050a0e;
+  --light:#e8f4f0;
+  --g60:rgba(232,244,240,.6);
+  --g45:rgba(232,244,240,.45);
+  --g30:rgba(232,244,240,.3);
+  --border:rgba(0,229,160,.12);
+  --border-h:rgba(0,229,160,.38);
+}
 
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.25;
-            animation: float 18s infinite alternate ease-in-out;
-        }
+/* ═══════════════════════════════════════════
+   KEYFRAMES
+═══════════════════════════════════════════ */
+@keyframes fadeUp   {from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn   {from{opacity:0}to{opacity:1}}
+@keyframes pulse    {0%,100%{box-shadow:0 0 0 0 rgba(0,229,160,.5)}70%{box-shadow:0 0 0 14px rgba(0,229,160,0)}}
+@keyframes blink    {0%,100%{opacity:1}50%{opacity:0}}
+@keyframes float    {0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-14px) rotate(.5deg)}}
+@keyframes shimmer  {0%{background-position:-200% center}100%{background-position:200% center}}
+@keyframes glow     {0%,100%{text-shadow:0 0 20px rgba(0,229,160,.35)}50%{text-shadow:0 0 40px rgba(0,229,160,.85),0 0 80px rgba(0,229,160,.4)}}
+@keyframes progFill {from{width:0}to{width:var(--w)}}
+@keyframes scanline {0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
+@keyframes borderA  {0%,100%{border-color:rgba(0,229,160,.4)}50%{border-color:rgba(0,184,217,.55)}}
+@keyframes spin     {to{transform:rotate(360deg)}}
+@keyframes typeIn   {from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:translateX(0)}}
 
-        .orb-1 {
-            width: 70vw;
-            height: 70vw;
-            max-width: 800px;
-            max-height: 800px;
-            background: #3b82f6;
-            top: -20%;
-            left: -15%;
-            animation-duration: 22s;
-        }
+/* ═══════════════════════════════════════════
+   OVERLAYS
+═══════════════════════════════════════════ */
+.noise{
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size:220px;opacity:.5;
+}
+.scanline{
+  position:fixed;left:0;top:0;width:100%;height:2px;
+  background:linear-gradient(transparent,rgba(0,229,160,.07),transparent);
+  pointer-events:none;z-index:1;
+  animation:scanline 9s linear infinite;
+}
 
-        .orb-2 {
-            width: 65vw;
-            height: 65vw;
-            max-width: 750px;
-            max-height: 750px;
-            background: #8b5cf6;
-            bottom: -25%;
-            right: -10%;
-            animation-duration: 20s;
-            animation-delay: -5s;
-        }
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:.9rem 6vw;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(5,10,14,.85);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(0,229,160,.07);
+  animation:fadeIn .6s ease both;
+}
+.nav-logo{
+  font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;
+  color:var(--green);letter-spacing:.05em;
+}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{
+  font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--g45);transition:color .2s;
+}
+.nav-links a:hover{color:var(--green);}
+.nav-dot{
+  width:7px;height:7px;border-radius:50%;background:var(--green);
+  animation:pulse 1.8s infinite;
+}
 
-        .orb-3 {
-            width: 45vw;
-            height: 45vw;
-            max-width: 500px;
-            max-height: 500px;
-            background: #06b6d4;
-            top: 40%;
-            left: 30%;
-            animation-duration: 25s;
-            animation-delay: -10s;
-            opacity: 0.2;
-        }
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+  padding:8rem 6vw 5rem;
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(ellipse 80% 60% at 72% 50%,rgba(0,229,160,.08) 0%,transparent 62%),
+    radial-gradient(ellipse 40% 40% at 15% 80%,rgba(0,184,217,.06) 0%,transparent 55%),
+    #050a0e;
+}
+.hero-svg{
+  position:absolute;right:6vw;top:50%;transform:translateY(-50%);
+  width:clamp(220px,30vw,400px);opacity:.11;
+  animation:float 8s ease-in-out infinite;
+  pointer-events:none;
+}
+.status-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.38rem 1rem;border-radius:20px;
+  background:rgba(0,229,160,.08);border:1px solid rgba(0,229,160,.22);
+  font-size:.71rem;color:var(--green);margin-bottom:1.4rem;
+  animation:fadeIn .7s .1s ease both;opacity:0;animation-fill-mode:forwards;
+}
+.sdot{
+  width:7px;height:7px;border-radius:50%;background:var(--green);
+  display:inline-block;flex-shrink:0;animation:pulse 1.6s infinite;
+}
+.hero-eyebrow{
+  font-size:.73rem;letter-spacing:.26em;text-transform:uppercase;color:var(--green);
+  display:flex;align-items:center;gap:.75rem;margin-bottom:.55rem;
+  animation:fadeUp .6s .25s ease both;opacity:0;animation-fill-mode:forwards;
+}
+.hero-eyebrow::before{content:'';width:30px;height:1px;background:var(--green);flex-shrink:0;}
+.hero-name{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(3rem,9vw,8rem);font-weight:800;line-height:.92;
+  color:var(--light);margin-bottom:.5rem;
+  animation:fadeUp .7s .4s ease both;opacity:0;animation-fill-mode:forwards;
+}
+.hero-name-g{
+  display:block;
+  background:linear-gradient(135deg,#00e5a0 0%,#00b8d9 50%,#00e5a0 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shimmer 3.5s linear infinite;
+}
+.hero-title{
+  font-family:'Instrument Serif',serif;font-style:italic;
+  font-size:clamp(.95rem,2.2vw,1.45rem);color:var(--g45);
+  margin-bottom:1.75rem;
+  animation:fadeUp .7s .55s ease both;opacity:0;animation-fill-mode:forwards;
+}
+.hero-desc{
+  max-width:50ch;font-size:.87rem;line-height:2;color:var(--g60);
+  border-left:2px solid rgba(0,229,160,.3);padding-left:1.25rem;
+  margin-bottom:2.3rem;
+  animation:fadeUp .7s .7s ease both;opacity:0;animation-fill-mode:forwards;
+}
+.hero-btns{
+  display:flex;gap:1rem;flex-wrap:wrap;
+  animation:fadeUp .7s .85s ease both;opacity:0;animation-fill-mode:forwards;
+}
+.btn-p{
+  font-family:'DM Mono',monospace;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:.85rem 2rem;background:var(--green);color:var(--dark);
+  border:none;border-radius:2px;cursor:pointer;font-weight:600;
+  transition:transform .2s,box-shadow .2s;animation:pulse 2.8s infinite;
+  display:inline-block;
+}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(0,229,160,.4);}
+.btn-s{
+  font-family:'DM Mono',monospace;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:.85rem 2rem;background:transparent;color:var(--green);
+  border:1px solid rgba(0,229,160,.38);border-radius:2px;cursor:pointer;
+  transition:transform .2s,border-color .2s,box-shadow .2s;display:inline-block;
+  animation:borderA 3s ease infinite;
+}
+.btn-s:hover{transform:translateY(-3px);border-color:var(--green);box-shadow:0 14px 32px rgba(0,229,160,.15);}
 
-        @keyframes float {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
+/* Terminal */
+.terminal{
+  font-family:'DM Mono',monospace;font-size:.76rem;line-height:1.95;
+  background:rgba(0,0,0,.6);border:1px solid rgba(0,229,160,.16);border-radius:4px;
+  padding:1.5rem 1.4rem 1.3rem;margin-top:2.5rem;max-width:470px;position:relative;
+  animation:fadeUp .7s 1.05s ease both;opacity:0;animation-fill-mode:forwards;
+}
+.terminal::before{
+  content:'● ● ●';position:absolute;top:.55rem;left:1rem;
+  font-size:.58rem;color:rgba(232,244,240,.18);letter-spacing:.3rem;
+}
+.tb{margin-top:.5rem;}
+.tp{color:rgba(0,229,160,.78);}
+.tc{color:var(--light);}
+.to{color:rgba(232,244,240,.42);}
+.cursor{
+  display:inline-block;width:7px;height:13px;background:var(--green);
+  vertical-align:text-bottom;animation:blink 1s step-end infinite;
+}
 
-            100% {
-                transform: translate(5%, 8%) scale(1.1);
-            }
-        }
+/* ═══════════════════════════════════════════
+   STATS
+═══════════════════════════════════════════ */
+.stats{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  border-top:1px solid rgba(0,229,160,.1);
+  border-bottom:1px solid rgba(0,229,160,.1);
+}
+.stat{
+  padding:2.3rem 1.5rem;background:var(--dark);text-align:center;
+  border-right:1px solid rgba(0,229,160,.08);
+  transition:background .3s;
+  position:relative;overflow:hidden;
+}
+.stat::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 0%,rgba(0,229,160,.06),transparent 65%);
+  opacity:0;transition:opacity .3s;
+}
+.stat:hover{background:rgba(0,229,160,.03);}
+.stat:hover::before{opacity:1;}
+.stat:last-child{border-right:none;}
+.sn{
+  font-family:'Syne',sans-serif;font-size:2.7rem;font-weight:800;
+  color:var(--green);display:block;animation:glow 3.5s ease infinite;
+}
+.sl{
+  font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(232,244,240,.37);margin-top:.4rem;display:block;
+}
 
-        /* glass card container */
-        .portfolio {
-            position: relative;
-            z-index: 10;
-            width: 100%;
-            max-width: 980px;
-            background: rgba(18, 22, 35, 0.65);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border-radius: 3rem;
-            padding: 2.8rem 2.5rem;
-            box-shadow: 0 30px 55px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            animation: cardRise 0.9s cubic-bezier(0.23, 1, 0.32, 1);
-            transition: all 0.3s ease;
-        }
+/* ═══════════════════════════════════════════
+   SECTION BASE
+═══════════════════════════════════════════ */
+.section{padding:5.5rem 6vw;}
+.section-alt{
+  background:rgba(0,229,160,.018);
+  border-top:1px solid rgba(0,229,160,.07);
+  border-bottom:1px solid rgba(0,229,160,.07);
+}
+.sec-label{
+  font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--green);
+  margin-bottom:.6rem;display:flex;align-items:center;gap:.75rem;
+}
+.sec-label::after{
+  content:'';flex:1;max-width:200px;height:1px;
+  background:linear-gradient(to right,rgba(0,229,160,.35),transparent);
+}
+.sec-title{
+  font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,3rem);
+  font-weight:700;color:var(--light);margin-bottom:.4rem;line-height:1.08;
+}
+.sec-sub{
+  color:rgba(232,244,240,.4);font-size:.84rem;margin-bottom:3rem;max-width:50ch;
+}
 
-        @keyframes cardRise {
-            0% {
-                opacity: 0;
-                transform: translateY(35px);
-            }
+/* ═══════════════════════════════════════════
+   SKILLS GRID
+═══════════════════════════════════════════ */
+.skills-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.4rem;
+}
+.skill-card{
+  border:1px solid var(--border);padding:1.9rem;border-radius:4px;
+  background:rgba(255,255,255,.012);
+  transition:transform .3s,border-color .3s,box-shadow .3s;
+  position:relative;overflow:hidden;
+}
+.skill-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--green),transparent);
+  transform:translateX(-100%);transition:transform .5s;
+}
+.skill-card::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 0%,rgba(0,229,160,.05),transparent 60%);
+  opacity:0;transition:opacity .3s;
+}
+.skill-card:hover{transform:translateY(-6px);border-color:var(--border-h);box-shadow:0 20px 50px rgba(0,229,160,.09);}
+.skill-card:hover::before{transform:translateX(100%);}
+.skill-card:hover::after{opacity:1;}
+.sk-icon{font-size:1.7rem;margin-bottom:.9rem;display:block;position:relative;z-index:1;}
+.sk-name{font-family:'Syne',sans-serif;font-size:.97rem;font-weight:700;color:var(--light);margin-bottom:.4rem;position:relative;z-index:1;}
+.sk-desc{font-size:.77rem;line-height:1.76;color:var(--g45);margin-bottom:.95rem;position:relative;z-index:1;}
+.pr{margin:.68rem 0;position:relative;z-index:1;}
+.prl{display:flex;justify-content:space-between;font-size:.7rem;color:rgba(232,244,240,.48);margin-bottom:.32rem;}
+.prt{height:3px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden;}
+.prf{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--green),var(--blue));animation:progFill 1.6s cubic-bezier(.22,1,.36,1) both;}
 
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+/* ═══════════════════════════════════════════
+   TIMELINE
+═══════════════════════════════════════════ */
+.timeline{position:relative;padding-left:2rem;}
+.timeline::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:1px;
+  background:linear-gradient(to bottom,var(--green),rgba(0,229,160,.05));
+}
+.tl-item{position:relative;margin-bottom:2.8rem;}
+.tl-dot{
+  position:absolute;left:-2.38rem;top:.28rem;width:10px;height:10px;
+  border-radius:50%;background:var(--green);border:2px solid var(--dark);
+  box-shadow:0 0 0 3px rgba(0,229,160,.22),0 0 12px rgba(0,229,160,.3);
+}
+.tl-year{font-size:.67rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:.27rem;}
+.tl-role{font-family:'Syne',sans-serif;font-size:1.08rem;font-weight:700;color:var(--light);margin-bottom:.17rem;}
+.tl-co{font-size:.76rem;color:var(--g45);margin-bottom:.62rem;}
+.tl-desc{font-size:.79rem;line-height:1.9;color:rgba(232,244,240,.52);}
 
-        /* header section */
-        .hero {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-            margin-bottom: 2.8rem;
-        }
+/* ═══════════════════════════════════════════
+   PROJECT CARDS
+═══════════════════════════════════════════ */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.4rem;}
+.proj-card{
+  border:1px solid rgba(0,229,160,.1);border-radius:4px;overflow:hidden;
+  background:rgba(255,255,255,.01);
+  transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column;
+}
+.proj-card:hover{transform:translateY(-8px);box-shadow:0 28px 56px rgba(0,229,160,.1);}
+.proj-head{
+  padding:1.65rem;border-bottom:1px solid rgba(0,229,160,.07);
+  background:rgba(0,229,160,.03);
+  display:flex;justify-content:space-between;align-items:flex-start;gap:.8rem;
+}
+.proj-title{font-family:'Syne',sans-serif;font-size:1.02rem;font-weight:700;color:var(--light);}
+.proj-type{
+  font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green);
+  padding:.26rem .62rem;border:1px solid rgba(0,229,160,.28);border-radius:2px;
+  white-space:nowrap;flex-shrink:0;
+}
+.proj-body{padding:1.5rem;flex:1;}
+.proj-desc{font-size:.79rem;line-height:1.82;color:rgba(232,244,240,.46);margin-bottom:1.05rem;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:.42rem;}
+.tag{
+  font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .55rem;
+  background:rgba(0,229,160,.07);border:1px solid rgba(0,229,160,.15);
+  border-radius:2px;color:rgba(0,229,160,.85);
+}
 
-        .name-section h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: clamp(2.5rem, 8vw, 3.8rem);
-            background: linear-gradient(to right, #ffffff, #b4d0ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.5rem;
-            animation: fadeSlide 0.8s ease-out;
-        }
+/* ═══════════════════════════════════════════
+   TECH STACK
+═══════════════════════════════════════════ */
+.tech-grid{display:flex;flex-wrap:wrap;gap:.9rem;}
+.tech-pill{
+  display:flex;align-items:center;gap:.45rem;padding:.5rem 1.05rem;
+  border:1px solid rgba(0,229,160,.13);border-radius:2px;
+  background:rgba(0,229,160,.03);
+  font-size:.74rem;color:rgba(232,244,240,.66);
+  transition:transform .2s,border-color .2s,color .2s,background .2s;cursor:default;
+}
+.tech-pill:hover{transform:translateY(-3px);border-color:rgba(0,229,160,.42);color:var(--green);background:rgba(0,229,160,.07);}
 
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            background: rgba(59, 130, 246, 0.18);
-            border: 1px solid rgba(59, 130, 246, 0.45);
-            padding: 0.5rem 1.5rem;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: #90b4f5;
-            backdrop-filter: blur(5px);
-            gap: 0.5rem;
-            animation: fadeSlide 0.8s 0.1s both;
-        }
+/* ═══════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════ */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.contact-item{
+  display:flex;align-items:flex-start;gap:1.1rem;padding:1.3rem;
+  border:1px solid rgba(0,229,160,.1);border-radius:4px;margin-bottom:.9rem;
+  transition:border-color .3s,background .3s;
+}
+.contact-item:hover{border-color:rgba(0,229,160,.38);background:rgba(0,229,160,.02);}
+.c-icon{font-size:1.25rem;flex-shrink:0;margin-top:.07rem;}
+.c-label{font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:.17rem;}
+.c-val{font-size:.8rem;color:var(--g60);word-break:break-all;}
 
-        .badge i {
-            color: #3b82f6;
-            font-size: 0.9rem;
-        }
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer{
+  padding:1.8rem 6vw;text-align:center;
+  border-top:1px solid rgba(0,229,160,.07);
+  font-size:.68rem;color:rgba(232,244,240,.22);letter-spacing:.1em;
+}
+footer span{color:rgba(0,229,160,.55);}
 
-        .avatar-icon {
-            background: linear-gradient(145deg, #2a2f45, #161b2b);
-            border-radius: 50%;
-            width: 110px;
-            height: 110px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 18px 30px -8px rgba(0, 0, 0, 0.7), inset 0 0 0 1px rgba(255, 255, 255, 0.12);
-            font-size: 3.5rem;
-            color: #cbd5e1;
-            transition: all 0.3s;
-            animation: softPulse 3s infinite;
-        }
+/* ═══════════════════════════════════════════
+   SCROLL-REVEAL (JS-driven)
+═══════════════════════════════════════════ */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:.08s;}
+.reveal-delay-2{transition-delay:.16s;}
+.reveal-delay-3{transition-delay:.24s;}
+.reveal-delay-4{transition-delay:.32s;}
+.reveal-delay-5{transition-delay:.40s;}
+.reveal-delay-6{transition-delay:.48s;}
 
-        @keyframes softPulse {
-            0% {
-                box-shadow: 0 18px 30px -8px rgba(0, 0, 0, 0.7), 0 0 0 0 rgba(59, 130, 246, 0.4);
-            }
-
-            70% {
-                box-shadow: 0 18px 30px -8px rgba(0, 0, 0, 0.7), 0 0 0 12px rgba(59, 130, 246, 0);
-            }
-
-            100% {
-                box-shadow: 0 18px 30px -8px rgba(0, 0, 0, 0.7), 0 0 0 0 rgba(59, 130, 246, 0);
-            }
-        }
-
-        .experience-tag {
-            background: rgba(255, 255, 255, 0.06);
-            border-radius: 2.5rem;
-            padding: 0.7rem 1.6rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            font-weight: 500;
-            color: #d1d9e6;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            margin-top: 1rem;
-        }
-
-        .experience-tag i {
-            color: #fbbf24;
-        }
-
-        /* grid layout */
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.8rem;
-            margin: 2.5rem 0 2rem;
-        }
-
-        @media (max-width: 700px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
-
-            .portfolio {
-                padding: 2rem 1.5rem;
-            }
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 2rem;
-            padding: 1.6rem 1.5rem;
-            transition: transform 0.25s ease, box-shadow 0.3s;
-            animation: fadeSlide 0.7s ease-out both;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 35px -15px rgba(0, 160, 255, 0.25);
-            border-color: rgba(59, 130, 246, 0.4);
-        }
-
-        .card h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
-            font-size: 1.6rem;
-            margin-bottom: 1.3rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #f0f4ff;
-        }
-
-        .card h3 i {
-            color: #3b82f6;
-            font-size: 1.4rem;
-        }
-
-        .pill-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.7rem;
-            margin-top: 0.8rem;
-        }
-
-        .pill {
-            background: rgba(59, 130, 246, 0.12);
-            border: 1px solid rgba(59, 130, 246, 0.35);
-            padding: 0.45rem 1.2rem;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: #cbddec;
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-            backdrop-filter: blur(4px);
-            transition: 0.2s;
-        }
-
-        .pill i {
-            font-size: 0.8rem;
-            color: #60a5fa;
-        }
-
-        .highlight {
-            color: #facc15;
-            font-weight: 600;
-        }
-
-        .ai-section {
-            margin-top: 0.6rem;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .ai-badge {
-            background: linear-gradient(120deg, #7c3aed, #4f46e5);
-            padding: 0.4rem 1.1rem;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: white;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            box-shadow: 0 8px 18px -6px #4f46e5;
-        }
-
-        .project-list {
-            list-style: none;
-            margin-top: 0.8rem;
-        }
-
-        .project-list li {
-            display: flex;
-            align-items: baseline;
-            gap: 0.7rem;
-            margin-bottom: 0.8rem;
-            font-size: 0.98rem;
-            color: #d1d5db;
-        }
-
-        .project-list i.fa-check-circle {
-            color: #34d399;
-            font-size: 1rem;
-            margin-top: 0.2rem;
-        }
-
-        .footer-note {
-            margin-top: 2.2rem;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding-top: 1.5rem;
-            font-size: 0.95rem;
-            color: #9ca3af;
-        }
-
-        .contact-links i {
-            margin: 0 0.5rem;
-            font-size: 1.2rem;
-            color: #94a3b8;
-            transition: 0.2s;
-        }
-
-        .contact-links i:hover {
-            color: #3b82f6;
-            transform: scale(1.15);
-        }
-
-        @keyframes fadeSlide {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media(max-width:900px){
+  .stats{grid-template-columns:repeat(3,1fr);}
+  .contact-grid{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+}
+@media(max-width:600px){
+  .hero{padding:7rem 5vw 4rem;}
+  .section{padding:4rem 5vw;}
+  .stats{grid-template-columns:repeat(2,1fr);}
+  .hero-svg{display:none;}
+}
+</style>
 </head>
-
 <body>
-    <div class="bg-animation">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
+
+<!-- overlays -->
+<div class="noise"></div>
+<div class="scanline"></div>
+
+<!-- ═══════════════════════════════════════════
+     NAV
+═══════════════════════════════════════════ -->
+<nav>
+  <div class="nav-logo">IHS.dev</div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-dot"></div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<section class="hero">
+  <!-- Orbital SVG -->
+  <svg class="hero-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="200" cy="200" r="185" stroke="#00e5a0" stroke-width=".5" stroke-dasharray="4 8"/>
+    <circle cx="200" cy="200" r="145" stroke="#00b8d9" stroke-width=".5" stroke-dasharray="2 6"/>
+    <circle cx="200" cy="200" r="105" stroke="#00e5a0" stroke-width=".5" stroke-dasharray="1 4"/>
+    <circle cx="200" cy="200" r="62"  stroke="#00b8d9" stroke-width=".4" stroke-dasharray="2 5"/>
+    <line x1="15" y1="200" x2="385" y2="200" stroke="#00e5a0" stroke-width=".3"/>
+    <line x1="200" y1="15" x2="200" y2="385" stroke="#00e5a0" stroke-width=".3"/>
+    <rect x="152" y="152" width="96" height="96" stroke="#00b8d9" stroke-width=".4" stroke-dasharray="3 6"/>
+    <circle cx="200" cy="200" r="10" fill="#00e5a0" opacity=".75"/>
+    <circle cx="200" cy="15"  r="4.5" fill="#00b8d9" opacity=".55"/>
+    <circle cx="385" cy="200" r="4.5" fill="#00e5a0" opacity=".55"/>
+    <circle cx="200" cy="385" r="4.5" fill="#00b8d9" opacity=".55"/>
+    <circle cx="15"  cy="200" r="4.5" fill="#00e5a0" opacity=".55"/>
+    <circle cx="330" cy="70"  r="3" fill="#00e5a0" opacity=".35"/>
+    <circle cx="70"  cy="330" r="3" fill="#00b8d9" opacity=".35"/>
+  </svg>
+
+  <div class="status-badge"><span class="sdot"></span>&nbsp;Available for new opportunities</div>
+  <p class="hero-eyebrow">Senior Full-Stack Engineer</p>
+  <h1 class="hero-name">
+    Iftikhar<br>
+    <span class="hero-name-g">Hussain Shah</span>
+  </h1>
+  <p class="hero-title">5 Years &middot; Laravel PHP &middot; ERP &amp; CRM Systems &middot; AI-Augmented Development</p>
+  <p class="hero-desc">I build robust enterprise-grade web systems&hairsp;&mdash;&hairsp;from real-estate ERP platforms to AI-integrated CRM solutions. Specialising in Laravel ecosystems, RESTful architecture, and modern DevOps pipelines that scale.</p>
+  <div class="hero-btns">
+    <a class="btn-p" href="mailto:iftikhar.hshah@gmail.com">Get in Touch &nearr;</a>
+    <a class="btn-s" href="#projects">View Projects &rarr;</a>
+  </div>
+  <div class="terminal">
+    <div class="tb">
+      <div><span class="tp">~/portfolio $</span> <span class="tc">whoami</span></div>
+      <div class="to">Iftikhar Hussain Shah &mdash; Backend Architect &amp; API Specialist</div>
+      <div style="margin-top:.38rem"><span class="tp">~/portfolio $</span> <span class="tc">skills --top 3</span></div>
+      <div class="to">Laravel &nbsp;&bull;&nbsp; Vue.js &nbsp;&bull;&nbsp; AI/LLM Integration</div>
+      <div style="margin-top:.38rem"><span class="tp">~/portfolio $</span> <span class="tc">status</span></div>
+      <div class="to">&#9889; Open to senior / lead roles &nbsp;<span class="cursor"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     STATS
+═══════════════════════════════════════════ -->
+<div class="stats">
+  <div class="stat reveal"><span class="sn">5+</span><span class="sl">Years Experience</span></div>
+  <div class="stat reveal reveal-delay-1"><span class="sn">30+</span><span class="sl">Projects Delivered</span></div>
+  <div class="stat reveal reveal-delay-2"><span class="sn">12+</span><span class="sl">ERP/CRM Modules</span></div>
+  <div class="stat reveal reveal-delay-3"><span class="sn">4</span><span class="sl">Industry Sectors</span></div>
+  <div class="stat reveal reveal-delay-4"><span class="sn">99%</span><span class="sl">Client Satisfaction</span></div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SKILLS
+═══════════════════════════════════════════ -->
+<section class="section" id="skills">
+  <p class="sec-label">Expertise</p>
+  <h2 class="sec-title">Core Competencies</h2>
+  <p class="sec-sub">A full-stack practitioner with a back-end-first mindset, deeply versed in enterprise architecture patterns.</p>
+
+  <div class="skills-grid">
+
+    <div class="skill-card reveal reveal-delay-1">
+      <span class="sk-icon">&#128311;</span>
+      <p class="sk-name">Laravel &amp; PHP Ecosystem</p>
+      <p class="sk-desc">Expert-level Laravel 10/11 &mdash; Eloquent ORM, Queues, Events, Sanctum/Passport auth, Livewire, Filament admin panels. PSR-12 clean code advocate.</p>
+      <div class="pr"><div class="prl"><span>Laravel</span><span>97%</span></div><div class="prt"><div class="prf" style="--w:97%"></div></div></div>
+      <div class="pr"><div class="prl"><span>PHP 8.x</span><span>93%</span></div><div class="prt"><div class="prf" style="--w:93%"></div></div></div>
+      <div class="pr"><div class="prl"><span>Livewire / Filament</span><span>88%</span></div><div class="prt"><div class="prf" style="--w:88%"></div></div></div>
     </div>
 
-    <div class="portfolio">
-        <div class="hero">
-            <div class="name-section">
-                <h1>Iftikhar Hussain Shah</h1>
-                <div class="badge">
-                    <i class="fas fa-code"></i> Senior Laravel & ERP Specialist
-                </div>
-                <div class="experience-tag">
-                    <i class="fas fa-star"></i> 5+ Years of Full-Stack Impact
-                </div>
-            </div>
-            <div class="avatar-icon">
-                <i class="fas fa-user-astronaut"></i>
-            </div>
-        </div>
-
-        <!-- Core expertise grid -->
-        <div class="grid">
-            <div class="card" style="animation-delay: 0.15s;">
-                <h3><i class="fas fa-building"></i> ERP & CRM</h3>
-                <p style="margin-bottom: 1rem; color: #cbd5e1;">Real Estate · Enterprise systems delivered with
-                    precision.</p>
-                <div class="pill-group">
-                    <span class="pill"><i class="fas fa-check"></i> Property Portals</span>
-                    <span class="pill"><i class="fas fa-check"></i> Lease Management</span>
-                    <span class="pill"><i class="fas fa-check"></i> CRM Pipelines</span>
-                    <span class="pill"><i class="fas fa-check"></i> Payment Gateways</span>
-                </div>
-                <div style="margin-top: 1.2rem; font-style: italic; color: #a5b4fc;">
-                    <i class="fas fa-chart-line"></i> Delivered 15+ real estate platforms
-                </div>
-            </div>
-
-            <div class="card" style="animation-delay: 0.25s;">
-                <h3><i class="fas fa-microchip"></i> AI & Modern Tech</h3>
-                <p style="margin-bottom: 1rem; color: #cbd5e1;">Integrating intelligent features into web applications.
-                </p>
-                <div class="ai-section">
-                    <span class="ai-badge"><i class="fas fa-robot"></i> OpenAI / GPT</span>
-                    <span class="ai-badge"><i class="fas fa-brain"></i> LangChain</span>
-                    <span class="ai-badge"><i class="fas fa-database"></i> Vector DBs</span>
-                </div>
-                <div class="pill-group" style="margin-top: 1rem;">
-                    <span class="pill"><i class="fab fa-python"></i> Python AI microservices</span>
-                    <span class="pill"><i class="fas fa-comment-dots"></i> Chatbots</span>
-                    <span class="pill"><i class="fas fa-cloud"></i> AWS / Azure AI</span>
-                </div>
-                <p style="margin-top: 1rem; font-size: 0.9rem; color: #b9c2d0;">
-                    <i class="fas fa-lightbulb" style="color: #fbbf24;"></i> Smart search, document parsing & predictive
-                    analytics
-                </p>
-            </div>
-        </div>
-
-        <!-- Laravel & stack deep dive -->
-        <div class="grid" style="margin-top: 0.5rem;">
-            <div class="card" style="animation-delay: 0.35s;">
-                <h3><i class="fab fa-laravel"></i> Laravel Ecosystem</h3>
-                <div class="pill-group">
-                    <span class="pill">PHP 8.2+</span>
-                    <span class="pill">Livewire</span>
-                    <span class="pill">Eloquent ORM</span>
-                    <span class="pill">Filament</span>
-                    <span class="pill">Redis / Horizon</span>
-                    <span class="pill">REST & GraphQL</span>
-                </div>
-                <ul class="project-list">
-                    <li><i class="fas fa-check-circle"></i> Multi-tenant ERP for real estate groups</li>
-                    <li><i class="fas fa-check-circle"></i> Custom CRM with workflow automation</li>
-                    <li><i class="fas fa-check-circle"></i> API integrations (Salesforce, Zoho)</li>
-                </ul>
-            </div>
-
-            <div class="card" style="animation-delay: 0.45s;">
-                <h3><i class="fas fa-cubes"></i> Full-Stack & DevOps</h3>
-                <div class="pill-group">
-                    <span class="pill"><i class="fab fa-vuejs"></i> Vue.js</span>
-                    <span class="pill"><i class="fab fa-react"></i> React (Inertia)</span>
-                    <span class="pill"><i class="fab fa-docker"></i> Docker</span>
-                    <span class="pill"><i class="fas fa-code-branch"></i> CI/CD</span>
-                    <span class="pill">MySQL/PostgreSQL</span>
-                    <span class="pill">Tailwind CSS</span>
-                </div>
-                <div style="margin-top: 1.2rem;">
-                    <span style="background: #1e293b; padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.9rem;">
-                        <i class="fas fa-shield-alt"></i> TDD & secure architecture
-                    </span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Industry alignment & AI readiness -->
-        <div
-            style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 1.8rem 0 0.8rem; align-items: center; justify-content: center;">
-            <div
-                style="background: rgba(255,255,255,0.03); border-radius: 3rem; padding: 0.7rem 2rem; backdrop-filter: blur(10px); display: flex; gap: 1.8rem; flex-wrap: wrap;">
-                <span><i class="fas fa-cloud-upload-alt" style="color: #3b82f6;"></i> Cloud-Native</span>
-                <span><i class="fas fa-robot" style="color: #a78bfa;"></i> AI-Augmented</span>
-                <span><i class="fas fa-industry" style="color: #f59e0b;"></i> Industry 4.0 Ready</span>
-            </div>
-        </div>
-
-        <div class="footer-note">
-            <div style="display: flex; align-items: center; gap: 0.8rem;">
-                <i class="fas fa-map-pin" style="color: #f87171;"></i> Available for remote / hybrid opportunities
-                <span style="margin-left: 1rem; background: #1f2a41; padding: 0.2rem 1rem; border-radius: 20px;">
-                    <i class="fas fa-calendar-alt"></i> 5 years delivering ERP excellence
-                </span>
-            </div>
-            <div class="contact-links">
-                <i class="fab fa-github"></i>
-                <i class="fab fa-linkedin-in"></i>
-                <i class="fas fa-envelope"></i>
-                <i class="fab fa-x-twitter"></i>
-            </div>
-        </div>
-        <div style="text-align: center; margin-top: 0.8rem; font-size: 0.8rem; color: #6b7280;">
-            Laravel · AI integration · Real Estate ERP · CRM · cloud architecture
-        </div>
+    <div class="skill-card reveal reveal-delay-2">
+      <span class="sk-icon">&#128451;</span>
+      <p class="sk-name">Database Architecture</p>
+      <p class="sk-desc">High-performance schemas for ERP/CRM. MySQL, PostgreSQL, Redis caching, query optimisation, full-text search, and advanced indexing strategies.</p>
+      <div class="pr"><div class="prl"><span>MySQL / PostgreSQL</span><span>92%</span></div><div class="prt"><div class="prf" style="--w:92%"></div></div></div>
+      <div class="pr"><div class="prl"><span>Redis</span><span>83%</span></div><div class="prt"><div class="prf" style="--w:83%"></div></div></div>
+      <div class="pr"><div class="prl"><span>Query Optimisation</span><span>90%</span></div><div class="prt"><div class="prf" style="--w:90%"></div></div></div>
     </div>
+
+    <div class="skill-card reveal reveal-delay-3">
+      <span class="sk-icon">&#129302;</span>
+      <p class="sk-name">AI &amp; LLM Integration</p>
+      <p class="sk-desc">Integrating OpenAI GPT-4o &amp; Claude API into ERP workflows &mdash; AI-assisted data entry, smart search, document summarisation, and embedded chatbots.</p>
+      <div class="pr"><div class="prl"><span>OpenAI / Claude APIs</span><span>85%</span></div><div class="prt"><div class="prf" style="--w:85%"></div></div></div>
+      <div class="pr"><div class="prl"><span>Prompt Engineering</span><span>80%</span></div><div class="prt"><div class="prf" style="--w:80%"></div></div></div>
+      <div class="pr"><div class="prl"><span>RAG / Vector DBs</span><span>70%</span></div><div class="prt"><div class="prf" style="--w:70%"></div></div></div>
+    </div>
+
+    <div class="skill-card reveal reveal-delay-1">
+      <span class="sk-icon">&#9881;</span>
+      <p class="sk-name">API Design &amp; Microservices</p>
+      <p class="sk-desc">RESTful and GraphQL API design. Microservice decomposition, messaging with RabbitMQ/Kafka, and OpenAPI 3.x documentation standards.</p>
+      <div class="pr"><div class="prl"><span>REST API</span><span>95%</span></div><div class="prt"><div class="prf" style="--w:95%"></div></div></div>
+      <div class="pr"><div class="prl"><span>GraphQL</span><span>72%</span></div><div class="prt"><div class="prf" style="--w:72%"></div></div></div>
+      <div class="pr"><div class="prl"><span>RabbitMQ / Kafka</span><span>68%</span></div><div class="prt"><div class="prf" style="--w:68%"></div></div></div>
+    </div>
+
+    <div class="skill-card reveal reveal-delay-2">
+      <span class="sk-icon">&#128187;</span>
+      <p class="sk-name">Frontend &mdash; Vue &amp; Inertia</p>
+      <p class="sk-desc">Vue 3 + Pinia + Vite for reactive SPA dashboards. Inertia.js for seamless Laravel-Vue workflows. Tailwind CSS, Chart.js data visualisations.</p>
+      <div class="pr"><div class="prl"><span>Vue 3</span><span>82%</span></div><div class="prt"><div class="prf" style="--w:82%"></div></div></div>
+      <div class="pr"><div class="prl"><span>Inertia.js</span><span>85%</span></div><div class="prt"><div class="prf" style="--w:85%"></div></div></div>
+      <div class="pr"><div class="prl"><span>Tailwind CSS</span><span>88%</span></div><div class="prt"><div class="prf" style="--w:88%"></div></div></div>
+    </div>
+
+    <div class="skill-card reveal reveal-delay-3">
+      <span class="sk-icon">&#128640;</span>
+      <p class="sk-name">DevOps &amp; Cloud</p>
+      <p class="sk-desc">CI/CD with GitHub Actions. Docker / Compose. AWS EC2, S3, RDS deployments. Laravel Forge, Envoyer, and Nginx server management.</p>
+      <div class="pr"><div class="prl"><span>Docker</span><span>80%</span></div><div class="prt"><div class="prf" style="--w:80%"></div></div></div>
+      <div class="pr"><div class="prl"><span>AWS</span><span>74%</span></div><div class="prt"><div class="prf" style="--w:74%"></div></div></div>
+      <div class="pr"><div class="prl"><span>CI/CD</span><span>82%</span></div><div class="prt"><div class="prf" style="--w:82%"></div></div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     EXPERIENCE
+═══════════════════════════════════════════ -->
+<section class="section section-alt" id="experience">
+  <p class="sec-label">Career</p>
+  <h2 class="sec-title">Experience</h2>
+  <p class="sec-sub">Five years of shipping production software across real estate, finance, and enterprise SaaS.</p>
+  <div class="timeline">
+
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2023 &mdash; Present</p>
+      <p class="tl-role">Senior Laravel Developer</p>
+      <p class="tl-co">Enterprise Software Studio &mdash; Remote</p>
+      <p class="tl-desc">Leading backend architecture for a multi-tenant real-estate ERP platform serving 30+ agencies. Introduced AI-assisted property valuation module using GPT-4o API, cutting manual appraisal time by 60%. Mentored a team of 4 junior developers; enforced TDD with PHPUnit &amp; Pest. Migrated monolith to service-oriented architecture on AWS &mdash; 99.9% uptime achieved.</p>
+    </div>
+
+    <div class="tl-item reveal reveal-delay-1">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2021 &mdash; 2023</p>
+      <p class="tl-role">Full-Stack Laravel Developer</p>
+      <p class="tl-co">PropTech Solutions Pvt. Ltd &mdash; Rawalpindi</p>
+      <p class="tl-desc">Built a CRM system for real-estate brokerages from scratch: lead pipeline management, automated follow-up sequences, commission tracking, and contract generation via PDF APIs. Integrated WhatsApp Business API and Twilio SMS. Reduced lead response time from 4 hours to under 8 minutes with Laravel Queues.</p>
+    </div>
+
+    <div class="tl-item reveal reveal-delay-2">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2019 &mdash; 2021</p>
+      <p class="tl-role">Junior PHP Developer</p>
+      <p class="tl-co">WebCraft Agency &mdash; Islamabad</p>
+      <p class="tl-desc">Developed and maintained custom Laravel applications for SME clients across retail, e-commerce, and hospitality verticals. Built reusable Blade component libraries and payment gateway integrations (Stripe, JazzCash). Solid foundation in RESTful API design and MySQL optimisation.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PROJECTS
+═══════════════════════════════════════════ -->
+<section class="section" id="projects">
+  <p class="sec-label">Work</p>
+  <h2 class="sec-title">Featured Projects</h2>
+  <p class="sec-sub">Handpicked deliverables demonstrating depth across ERP, CRM, and AI-augmented products.</p>
+  <div class="projects-grid">
+
+    <div class="proj-card reveal reveal-delay-1">
+      <div class="proj-head"><p class="proj-title">RealEstate360 ERP</p><span class="proj-type">ERP &middot; SaaS</span></div>
+      <div class="proj-body">
+        <p class="proj-desc">Multi-tenant ERP for real-estate agencies covering inventory, sales pipeline, agent commissions, document management, and a GPT-4o-powered AI assistant for property queries and automated reporting.</p>
+        <div class="proj-tags"><span class="tag">Laravel 11</span><span class="tag">Vue 3</span><span class="tag">Inertia</span><span class="tag">PostgreSQL</span><span class="tag">OpenAI API</span><span class="tag">AWS S3</span></div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal reveal-delay-2">
+      <div class="proj-head"><p class="proj-title">LeadFlow CRM</p><span class="proj-type">CRM &middot; Automation</span></div>
+      <div class="proj-body">
+        <p class="proj-desc">End-to-end CRM for real-estate brokers: lead capture from 10+ portals, automated WhatsApp &amp; SMS drip campaigns, deal tracking, and AI-assisted follow-up suggestion engine.</p>
+        <div class="proj-tags"><span class="tag">Laravel</span><span class="tag">Livewire</span><span class="tag">Redis</span><span class="tag">Twilio</span><span class="tag">WhatsApp API</span><span class="tag">Claude AI</span></div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal reveal-delay-3">
+      <div class="proj-head"><p class="proj-title">FinOps Tracker</p><span class="proj-type">Finance &middot; ERP</span></div>
+      <div class="proj-body">
+        <p class="proj-desc">Accounting module with accounts payable/receivable, multi-currency support, bank reconciliation, automated VAT reporting, and exportable audit trails in PDF/Excel.</p>
+        <div class="proj-tags"><span class="tag">Laravel</span><span class="tag">MySQL</span><span class="tag">Filament</span><span class="tag">Spatie</span><span class="tag">Laravel Excel</span><span class="tag">DomPDF</span></div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal reveal-delay-1">
+      <div class="proj-head"><p class="proj-title">DocuScan AI</p><span class="proj-type">AI &middot; Document OCR</span></div>
+      <div class="proj-body">
+        <p class="proj-desc">Automated document intake using OCR + LLM pipeline to extract fields from title deeds, NOC certificates, and mortgage papers &mdash; pushing structured data into ERP with 94% accuracy.</p>
+        <div class="proj-tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Laravel API</span><span class="tag">Tesseract</span><span class="tag">GPT-4o Vision</span><span class="tag">Pinecone</span></div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal reveal-delay-2">
+      <div class="proj-head"><p class="proj-title">PropPortal Mobile API</p><span class="proj-type">API &middot; Mobile</span></div>
+      <div class="proj-body">
+        <p class="proj-desc">Headless REST API for a Flutter property listing app: JWT auth, geolocation search, FCM push notifications, and real-time buyer-agent chat via WebSockets.</p>
+        <div class="proj-tags"><span class="tag">Laravel Sanctum</span><span class="tag">WebSockets</span><span class="tag">FCM</span><span class="tag">Elasticsearch</span><span class="tag">Redis</span><span class="tag">Docker</span></div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal reveal-delay-3">
+      <div class="proj-head"><p class="proj-title">HR &amp; Payroll Module</p><span class="proj-type">ERP &middot; HR</span></div>
+      <div class="proj-body">
+        <p class="proj-desc">HR module for a 500-employee group: biometric attendance sync, leave management, payroll with tax slabs, loan deductions, and self-service employee portal with role-based access.</p>
+        <div class="proj-tags"><span class="tag">Laravel</span><span class="tag">Vue 3</span><span class="tag">Filament</span><span class="tag">Spatie Roles</span><span class="tag">Chart.js</span><span class="tag">MySQL</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TECH STACK
+═══════════════════════════════════════════ -->
+<section class="section section-alt">
+  <p class="sec-label">Toolbox</p>
+  <h2 class="sec-title">Full Tech Stack</h2>
+  <p class="sec-sub">Technologies I reach for every day to ship production-ready systems.</p>
+  <div class="tech-grid reveal">
+    <div class="tech-pill">&#128311; Laravel 10/11</div>
+    <div class="tech-pill">&#128024; PHP 8.2</div>
+    <div class="tech-pill">&#128154; Vue 3 + Pinia</div>
+    <div class="tech-pill">&#9889; Inertia.js</div>
+    <div class="tech-pill">&#127788; Tailwind CSS</div>
+    <div class="tech-pill">&#128293; Livewire 3</div>
+    <div class="tech-pill">&#127919; Filament 3</div>
+    <div class="tech-pill">&#128451; MySQL 8</div>
+    <div class="tech-pill">&#128024; PostgreSQL 16</div>
+    <div class="tech-pill">&#128308; Redis</div>
+    <div class="tech-pill">&#128269; Elasticsearch</div>
+    <div class="tech-pill">&#128051; Docker</div>
+    <div class="tech-pill">&#9729; AWS EC2 / S3</div>
+    <div class="tech-pill">&#9881; GitHub Actions</div>
+    <div class="tech-pill">&#129302; OpenAI GPT-4o</div>
+    <div class="tech-pill">&#129504; Claude API</div>
+    <div class="tech-pill">&#128205; Pinecone</div>
+    <div class="tech-pill">&#128013; Python / FastAPI</div>
+    <div class="tech-pill">&#128230; RabbitMQ</div>
+    <div class="tech-pill">&#128172; Twilio / WA API</div>
+    <div class="tech-pill">&#129514; Pest / PHPUnit</div>
+    <div class="tech-pill">&#128221; Swagger / OpenAPI</div>
+    <div class="tech-pill">&#128274; Laravel Sanctum</div>
+    <div class="tech-pill">&#127760; Nginx</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CONTACT
+═══════════════════════════════════════════ -->
+<section class="section" id="contact">
+  <p class="sec-label">Contact</p>
+  <h2 class="sec-title">Let's Build Something</h2>
+  <p class="sec-sub">Open to senior engineering roles, technical leadership, and freelance ERP/CRM projects.</p>
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="contact-item">
+        <span class="c-icon">&#128231;</span>
+        <div><p class="c-label">Email</p><p class="c-val">iftikhar.hshah@gmail.com</p></div>
+      </div>
+      <div class="contact-item">
+        <span class="c-icon">&#128188;</span>
+        <div><p class="c-label">LinkedIn</p><p class="c-val">linkedin.com/in/iftikhar-hussain-shah</p></div>
+      </div>
+      <div class="contact-item">
+        <span class="c-icon">&#128025;</span>
+        <div><p class="c-label">GitHub</p><p class="c-val">github.com/iftikhar-hshah</p></div>
+      </div>
+      <div class="contact-item">
+        <span class="c-icon">&#128205;</span>
+        <div><p class="c-label">Location</p><p class="c-val">Rawalpindi, Pakistan &middot; Open to Remote</p></div>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <div class="terminal" style="margin-top:0;animation:none;opacity:1;">
+        <div class="tb">
+          <div><span class="tp">$ </span><span class="tc">cat availability.txt</span></div>
+          <div class="to" style="margin-top:.35rem;">
+            Status &nbsp;&nbsp;&nbsp;: &#10003; Available<br>
+            Notice &nbsp;&nbsp;&nbsp;: Immediate<br>
+            Preferred : Remote / Hybrid<br>
+            Timezone &nbsp;: PKT (UTC+5)<br>
+            Rate &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Negotiable
+          </div>
+          <div style="margin-top:.75rem;"><span class="tp">$ </span><span class="tc">cat specialisations.txt</span></div>
+          <div class="to" style="margin-top:.35rem;">
+            &#10004; ERP &amp; CRM Architecture<br>
+            &#10004; Real Estate Tech Platforms<br>
+            &#10004; AI/LLM Feature Integration<br>
+            &#10004; API Design &amp; Microservices<br>
+            &#10004; Team Lead &amp; Code Review
+          </div>
+          <div style="margin-top:.75rem;"><span class="tp">$ </span><span class="cursor"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer>
+  Crafted with <span>&#9889;</span> by Iftikhar Hussain Shah &nbsp;&middot;&nbsp; 2025
+  &nbsp;&middot;&nbsp; Built with <span>pure HTML &amp; CSS</span>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     SCROLL REVEAL
+═══════════════════════════════════════════ -->
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:0.12});
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+
 </body>
-
 </html>
